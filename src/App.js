@@ -12,12 +12,23 @@ class App extends React.Component {
     this.fetchAdvice()
   }
 
-  fetchAdvice = () => {
-    axios.get('https://api.adviceslip.com/advice')
-        .then((response) => {
-            const { advice } = response.data.slip; 
+  // fetchAdvice2 = () => {
+  //   axios.get('https://api.kanye.rest/text')
+  //       .then((response) => {
+  //           // const { advice } = response.data.slip; 
             
-            this.setState({ advice });
+  //           console.log(response.data)
+  //       })
+  //       .catch((err) => {
+  //           console.log(err)
+  //       })
+  // }
+  fetchAdvice = () => {
+    axios.get('https://api.kanye.rest')
+        .then((response) => {
+            const { quote } = response.data; 
+            
+            this.setState({ quote });
         })
         .catch((err) => {
             console.log(err)
@@ -25,14 +36,15 @@ class App extends React.Component {
   }
 
   render() {
-    const { advice } = this.state;
+    const { quote } = this.state;
 
     return (
       <div className='app'>
+        <h1>The Best <b><i>Ye</i></b> Quotes in the World!</h1>  
         <div className='card'>
-          {/* The Best Quotes in the World! */}
+          
           {/* <Home /> */}
-          <h1 className='heading'>{advice}</h1>
+          <h1 className='heading'>{quote}</h1>
           <button className='button' onClick={this.fetchAdvice}>
             <span>GIVE ME ADVICE</span>
           </button>
